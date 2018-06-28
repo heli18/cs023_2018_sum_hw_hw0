@@ -229,22 +229,31 @@ function love.update(dt)
         end
     end
 
+    -- debugging
+    --[[
+    print ('ballx = ', ball.x, 'bally = ', ball.y)
+    print ('player1x = ', player1.x, 'player1y = ', player1.y)
+    print ('player2x = ', player2.x, 'player2y = ', player2.y)
+    --]]
+
     --
     -- paddles can move no matter what state we're in
     --
     -- player 1
-    if love.keyboard.isDown('w') then
+    -- provide AI for player 1
+    if (player1.y > ball.y+2 and gameState == 'play') then
         player1.dy = -PADDLE_SPEED
-    elseif love.keyboard.isDown('s') then
+    elseif (player1.y < ball.y-2 and gameState == 'play') then
         player1.dy = PADDLE_SPEED
     else
         player1.dy = 0
     end
 
     -- player 2
-    if love.keyboard.isDown('up') then
+    -- provide AI for player 2
+    if (player2.y > ball.y+2 and gameState == 'play') then
         player2.dy = -PADDLE_SPEED
-    elseif love.keyboard.isDown('down') then
+    elseif (player2.y < ball.y-2 and gameState == 'play') then
         player2.dy = PADDLE_SPEED
     else
         player2.dy = 0
